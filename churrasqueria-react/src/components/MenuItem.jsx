@@ -1,67 +1,52 @@
-import { useState } from 'react'
-import { useCart } from '../context/CartContext'
-
-export default function MenuItem({ dish, onViewDetails }) {
-  const { addToCart } = useCart()
-  const [size, setSize] = useState('regular')
-
-  const handleAddToCart = (e) => {
-    e.stopPropagation()
-    addToCart(dish, size)
-    // Feedback visual
-    alert(`${dish.name} agregado al carrito`)
-  }
-
+export default function MenuItem({ dish, onDishClick }) {
   return (
-    <div 
-      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group"
-      onClick={onViewDetails}
-    >
-      {/* Imagen */}
-      <div className="relative h-48 overflow-hidden bg-gray-200">
+    // 1. La tarjeta debe ser un contenedor flex vertical de altura completa (h-full)
+    <div className="bg-stone-950 border border-stone-800 rounded-2xl overflow-hidden shadow-xl flex flex-col h-full">
+      
+      {/* Imagen del plato */}
+      <div className="relative cursor-pointer overflow-hidden" onClick={() => onDishClick(dish)}>
         <img 
           src={dish.img} 
-          alt={dish.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          alt={dish.name} 
+          className="w-full h-48 object-cover hover:scale-105 transition duration-300"
         />
-        <div className="absolute top-4 right-4 bg-accent text-primary-800 px-3 py-1 rounded-full font-bold">
+        <span className="absolute top-3 right-3 bg-amber-500/90 text-stone-950 font-bold px-3 py-1 rounded-lg text-sm">
           S/ {dish.price.toFixed(2)}
-        </div>
+        </span>
       </div>
 
-      {/* Contenido */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-primary-800 mb-2">
-          {dish.name}
-        </h3>
-        <p className="text-gray-600 text-sm mb-4">
-          {dish.desc}
-        </p>
-
-        {/* Selector de tamaño */}
-        <div className="mb-4">
-          <label className="text-xs font-semibold text-gray-700 block mb-2">
-            Tamaño
-          </label>
-          <select
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary-700"
-          >
-            <option value="regular">Regular</option>
-            <option value="grande">Grande (+S/ 8.00)</option>
-          </select>
+      {/* 2. El cuerpo interno de la tarjeta también es flex y se estira (flex-grow) */}
+      <div className="p-5 flex flex-col flex-grow justify-between">
+        
+        {/* Zona superior: Título y descripción */}
+        <div>
+          <h3 className="text-xl font-serif font-bold text-white mb-2">{dish.name}</h3>
+          
+          {/* Al ponerle min-h a la descripción o dejar que empuje el contenido de abajo de forma uniforme */}
+          <p className="text-stone-400 text-sm mb-4 line-clamp-3">
+            {dish.desc}
+          </p>
         </div>
 
-        {/* Botón de agregar */}
-        <button
-          onClick={handleAddToCart}
-          className="w-full btn-primary text-sm"
-        >
-          Agregar al Pedido
-        </button>
+        {/* Zona inferior: Controles y botón de acción (SIEMPRE quedarán pegados abajo en la misma línea) */}
+        <div className="mt-auto space-y-3 pt-2 border-t border-stone-900">
+          <div>
+            <label className="block text-xs text-stone-500 mb-1">Tamaño</label>
+            <select className="w-full p-2 bg-stone-900 border border-stone-800 rounded-lg text-sm text-stone-300 focus:outline-none">
+              <option>Regular</option>
+              <option>Grande</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={() => onDishClick(dish)}
+            className="w-full bg-accent hover:bg-accent-dark text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-colors uppercase tracking-wider"
+          >
+            Agregar al Pedido
+          </button>
+        </div>
+
       </div>
     </div>
   )
-}
+};

@@ -1,109 +1,66 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext } from 'react';
 
-// Crear el contexto
-const CartContext = createContext()
+const CartContext = createContext();
 
-// Proveedor del contexto
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
 
-  // Agregar item al carrito
   const addToCart = (item, size = 'regular') => {
-    setCart(prevCart => {
-      const extra = size === 'grande' ? 8.00 : 0
-      const price = item.price + extra
-      
-      // Buscar si el item ya existe con el mismo tamaño
-      const existingIndex = prevCart.findIndex(i => i.id === item.id && i.size === size)
+    setCart((prevCart) => {
+      const extra = size === 'grande' ? 8.00 : 0;
+      const price = item.price + extra;
+      const existingIndex = prevCart.findIndex((i) => i.id === item.id && i.size === size);
       
       if (existingIndex > -1) {
-        // Si existe, incrementar cantidad
-        const updated = [...prevCart]
-        updated[existingIndex].qty += 1
-        return updated
+        return prevCart.map((cartItem, i) => 
+          i === existingIndex ? { ...cartItem, qty: cartItem.qty + 1 } : cartItem
+        );
       } else {
-        // Si no existe, agregar nuevo
-        return [...prevCart, {
-          id: item.id,
-          name: item.name,
-          size,
-          qty: 1,
-          price
-        }]
+        return [...prevCart, { id: item.id, name: item.name, size, qty: 1, price }];
       }
-    })
-  }
+    });
+  };
 
-  // Incrementar cantidad de un item
   const incrementItem = (index) => {
-    setCart(prevCart => {
-      const updated = [...prevCart]
-      if (updated[index]) {
-        updated[index].qty += 1
-      }
-      return updated
-    })
-  }
+    setCart((prevCart) => 
+      prevCart.map((item, i) => 
+        i === index ? { ...item, qty: item.qty + 1 } : item
+      )
+    );
+  };
 
-  // Decrementar cantidad de un item
   const decrementItem = (index) => {
-    setCart(prevCart => {
-      const updated = [...prevCart]
-      if (updated[index]) {
-        updated[index].qty -= 1
-        if (updated[index].qty <= 0) {
-          updated.splice(index, 1)
-        }
+    setCart((prevCart) => {
+      if (prevCart[index]?.qty <= 1) {
+        return prevCart.filter((_, i) => i !== index);
       }
-      return updated
-    })
-  }
+      return prevCart.map((item, i) => 
+        i === index ? { ...item, qty: item.qty - 1 } : item
+      );
+    });
+  };
 
-  // Eliminar un item del carrito
   const removeItem = (index) => {
-    setCart(prevCart => {
-      const updated = [...prevCart]
-      updated.splice(index, 1)
-      return updated
-    })
-  }
+    setCart((prevCart) => prevCart.filter((_, i) => i !== index));
+  };
 
-  // Limpiar el carrito
-  const clearCart = () => {
-    setCart([])
-  }
+  const clearCart = () => setCart([]);
 
-  // Calcular total
-  const getTotal = () => {
-    return cart.reduce((total, item) => total + (item.price * item.qty), 0)
-  }
-
-  // Contar items
-  const getItemCount = () => {
-    return cart.reduce((count, item) => count + item.qty, 0)
-  }
+  const getTotal = () => cart.reduce((total, item) => total + (item.price * item.qty), 0);
+  
+  const getItemCount = () => cart.reduce((count, item) => count + item.qty, 0);
 
   return (
-    <CartContext.Provider value={{
-      cart,
-      addToCart,
-      incrementItem,
-      decrementItem,
-      removeItem,
-      clearCart,
-      getTotal,
-      getItemCount
-    }}>
+    <CartContext.Provider value={{ cart, addToCart, incrementItem, decrementItem, removeItem, clearCart, getTotal, getItemCount }}>
       {children}
     </CartContext.Provider>
-  )
+  );
 }
 
-// Hook personalizado para usar el contexto
 export function useCart() {
-  const context = useContext(CartContext)
+  const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart debe usarse dentro de CartProvider')
+    throw new Error('useCart debe usarse dentro de CartProvider');
   }
-  return context
+  return context;
 }

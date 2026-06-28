@@ -3,16 +3,19 @@ import { MENU } from '../data/menu'
 
 export default function Menu({ onDishClick }) {
   return (
-    <section id="menu" className="py-20 bg-white">
+    // Cambiado bg-white por bg-stone-900 y texto a blanco
+    <section id="menu" className="py-20 bg-stone-900 border-t border-stone-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-16">
-          <div className="section-label">Lo mejor de la casa</div>
-          <h2 className="section-title">
+        <div className="mb-16 text-center">
+          <div className="section-label text-accent font-semibold tracking-widest uppercase text-xs mb-2">
+            Lo mejor de la casa
+          </div>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white">
             Nuestras <span className="text-accent">Especialidades</span>
           </h2>
-          <div className="divider"></div>
-          <p className="section-sub">
+          <div className="w-24 h-1 bg-accent mx-auto mt-4 mb-4"></div>
+          <p className="text-stone-400 max-w-xl mx-auto text-sm md:text-base">
             Cinco platos únicos preparados a las brasas con ingredientes 
             seleccionados de la región amazónica.
           </p>
@@ -24,11 +27,11 @@ export default function Menu({ onDishClick }) {
             <MenuItem 
               key={dish.id} 
               dish={dish}
-              onViewDetails={() => onDishClick(dish)}
+              onDishClick={onDishClick} 
             />
           ))}
         </div>
       </div>
     </section>
   )
-}
+};
