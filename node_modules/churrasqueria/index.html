@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churrasquería El Rinconcito del Patricio | Puerto Maldonado</title>
+    <meta name="description"
+        content="Disfruta de la mejor parrillada al carbón en El Rinconcito del Patricio. Haz tu pedido y paga con QR o banca online.">
+    <meta name="keywords" content="Churrasquería, Puerto Maldonado, Parrilla, Carne, Pedidos, QR, Banca online">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="#inicio" class="logo">El Rinconcito <span>del Patricio</span></a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#pedido-view">Pedido</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <button id="btn-cart" class="btn-primary">Mi pedido (<span id="cart-count">0</span>)</button>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <span class="hero-badge">🔥 Puerto Maldonado, Madre de Dios</span>
+                <h1>Sabor y Tradición<br><em>a la Parrilla</em></h1>
+                <p>Cortes seleccionados con el auténtico toque amazónico. Carbón, fuego y pasión en cada plato. Pide
+                    ahora y paga con QR o banca online.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-primary">Ver Especialidades</a>
+                    <a href="#pedido-view" class="btn-secondary">Mi Pedido</a>
+                </div>
+            </div>
+            <div class="scroll-hint">Descubrir</div>
+        </section>
+
+        <section id="menu">
+            <div class="menu-header">
+                <span class="section-label">Lo mejor de la casa</span>
+                <h2 class="section-title">Nuestras <span>Especialidades</span></h2>
+                <div class="divider"></div>
+                <p class="section-sub">Cinco platos únicos preparados a las brasas con ingredientes seleccionados de la
+                    región amazónica.</p>
+            </div>
+
+            <div class="menu-grid" id="menu-list"></div>
+        </section>
+
+        <section id="contacto">
+            <div class="contacto-inner">
+                <div class="contacto-info">
+                    <span class="section-label">Estamos para atenderte</span>
+                    <h2 class="section-title">Visítanos o<br><span>Contáctanos</span></h2>
+                    <div class="divider"></div>
+                    <p class="section-sub">Reservas, consultas o simplemente para saber qué hay en la parrilla hoy.
+                        Estamos en el corazón de Puerto Maldonado.</p>
+                </div>
+                <div class="contacto-cards">
+                    <a href="tel:+51993018321" class="contacto-card">
+                        <div class="contacto-icon">📞</div>
+                        <div class="contacto-text">
+                            <h4>Llámanos</h4>
+                            <p>993 018 321</p>
+                        </div>
+                    </a>
+                    <a href="mailto:cesarbueno677@gmail.com" class="contacto-card">
+                        <div class="contacto-icon">✉️</div>
+                        <div class="contacto-text">
+                            <h4>Escríbenos</h4>
+                            <p>cesarbueno677@gmail.com</p>
+                        </div>
+                    </a>
+                    <div class="contacto-card">
+                        <div class="contacto-icon">📍</div>
+                        <div class="contacto-text">
+                            <h4>Encuéntranos</h4>
+                            <p>Av. Andrés Mallea con Psj. Iquique, Puerto Maldonado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">El Rinconcito <span>del Patricio</span></div>
+        <div class="footer-info">
+            <p>© 2026 El Rinconcito del Patricio</p>
+            <p>UNAMAD – Ingeniería de Sistemas | Bueno Quiñones Paulo Cesar & Hurtado Quispe Mark Leonel</p>
+        </div>
+    </footer>
+
+    <template id="menu-item-tpl">
+        <article class="menu-card">
+            <div class="card-img">
+                <img class="item-img" src="" alt="">
+            </div>
+            <div class="card-body">
+                <h3 class="item-name"></h3>
+                <p class="item-desc"></p>
+                <div class="card-footer">
+                    <div>
+                        <div class="precio-label">Precio</div>
+                        <div class="precio">S/ <span class="item-price"></span></div>
+                    </div>
+                    <div class="card-actions">
+                        <select class="size-select">
+                            <option value="regular">Regular</option>
+                            <option value="grande">Grande (+S/ 8.00)</option>
+                        </select>
+                        <button class="btn-primary add">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <!-- Modal del carrito -->
+    <div id="cart-modal" class="modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <button class="modal-close btn-secondary" id="cart-close">X</button>
+            <div class="cart-panel">
+                <div class="cart-header">
+                    <span class="section-label">Tu pedido</span>
+                    <h3 class="cart-title">Resumen del carrito</h3>
+                </div>
+                <div id="cart-items" class="cart-items"></div>
+                <div class="cart-footer">
+                    <div>
+                        <span class="precio-label">Total</span>
+                        <div class="total">S/ <span id="cart-total">0.00</span></div>
+                    </div>
+                    <button id="checkout" class="btn-primary">Finalizar pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dish-modal" class="modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <button class="modal-close btn-secondary" id="dish-close">X</button>
+            <div class="dish-detail">
+                <div class="dish-media">
+                    <img id="dish-img" src="" alt="Imagen del plato">
+                </div>
+                <div class="dish-info">
+                    <h3 id="dish-name">Nombre del plato</h3>
+                    <p id="dish-desc-full">Descripción extendida del plato.</p>
+                    <p id="dish-ingredients" class="small muted">Ingredientes: --</p>
+
+                    <div class="dish-actions">
+                        <label class="small">Tamaño</label>
+                        <select id="dish-size" class="size-select">
+                            <option value="regular">Regular</option>
+                            <option value="grande">Grande (+S/ 8.00)</option>
+                        </select>
+                        <label class="small">Cantidad</label>
+                        <input id="dish-qty" type="number" min="1" value="1"
+                            style="width:80px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit;">
+                        <button id="dish-add" class="btn-primary">Agregar al pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <button class="modal-close btn-secondary" id="modal-close">X</button>
+            <h3>Confirmar pedido</h3>
+            <div id="modal-summary" class="modal-summary"></div>
+
+            <div class="payment-options">
+                <label><input type="radio" name="payment" value="qr" checked> Pago con QR</label>
+                <label><input type="radio" name="payment" value="bank"> Banca online</label>
+            </div>
+
+            <div id="payment-qr" class="payment-panel">
+                <p>Escanea este código con tu app bancaria:</p>
+                <img id="qr-img" alt="QR de pago" src="" />
+                <div class="small muted">Total: S/ <span id="qr-total">0.00</span></div>
+            </div>
+
+            <div id="payment-bank" class="payment-panel hidden">
+                <p>Datos para transferencia:</p>
+                <div class="bank-details">
+                    <div><strong>Banco:</strong> BCP</div>
+                    <div><strong>Cuenta:</strong> 123-456789-0</div>
+                    <div><strong>Titular:</strong> Churrasquería La Parrilla</div>
+                    <div><strong>Referencia:</strong> <span id="bank-ref">-</span></div>
+                </div>
+                <button id="copy-bank" class="btn-primary">Copiar datos</button>
+            </div>
+
+            <div class="modal-actions">
+                <button id="confirm-payment" class="btn-primary">He pagado / Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
