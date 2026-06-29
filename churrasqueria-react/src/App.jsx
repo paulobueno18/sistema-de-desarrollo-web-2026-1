@@ -8,14 +8,14 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CartModal from './components/CartModal'
 import DishModal from './components/DishModal'
-import AdminPanel from './components/AdminPanel' // Asegúrate de que este archivo exista en components
+import AdminPanel from './components/AdminPanel'
 
 export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isDishOpen, setIsDishOpen] = useState(false)
   const [selectedDish, setSelectedDish] = useState(null)
   
-  // Estado global para controlar si el administrador está logueado
+  // Estado para controlar si el administrador ha iniciado sesión
   const [isAdmin, setIsAdmin] = useState(false)
 
   const handleOpenDish = (dish) => {
@@ -43,7 +43,7 @@ export default function App() {
               </>
             } />
 
-            {/* 📅 RUTA 2: Pestaña exclusiva para "Reserva tu Mesa" */}
+            {/* 📅 RUTA 2: Sección exclusiva para "Reserva tu Mesa" */}
             <Route path="/reservar" element={
               <div className="py-12 bg-stone-950 min-h-[80vh] flex items-center justify-center">
                 <div className="w-full max-w-4xl">
@@ -52,10 +52,10 @@ export default function App() {
               </div>
             } />
 
-            {/* 🛠️ RUTA 3: Panel de Administración con Login Integrado */}
+            {/* 🛠️ RUTA 3: Panel de Administración con Login Integrado (Doble Campo) */}
             <Route path="/admin" element={
               isAdmin ? (
-                // Si ya inició sesión, ve el panel CRUD completo para gestionar el menú
+                // Vista 1: Si ya inició sesión, ve el panel CRUD de gestión
                 <div className="py-10 bg-stone-900 min-h-screen">
                   <div className="max-w-6xl mx-auto px-4 flex justify-end mb-4">
                     <button 
@@ -68,44 +68,64 @@ export default function App() {
                   <AdminPanel />
                 </div>
               ) : (
-                // Si NO ha iniciado sesión, se le muestra este formulario de acceso directo
-                <div className="py-20 text-center bg-stone-900 min-h-[75vh] flex flex-col justify-center items-center px-4">
+                // Vista 2: Formulario completo integrado en la pantalla /admin
+                <div className="py-16 text-center bg-stone-900 min-h-[85vh] flex flex-col justify-center items-center px-4">
                   <span className="text-5xl mb-4">🛠️</span>
                   <h2 className="text-3xl font-serif text-amber-500 font-bold mb-3">
-                    Panel de Control Administrativo
+                    Control de <span className="text-white">Administrador</span>
                   </h2>
                   <div className="w-16 h-1 bg-amber-500 mb-6"></div>
                   
                   <form 
                     onSubmit={(e) => {
                       e.preventDefault();
-                      const passwordInput = e.target.elements.adminPassword.value;
                       
-                      // 🔑 Clave local de acceso. Puedes cambiar 'admin123' por la que prefieras
-                      if (passwordInput === 'admin123') {
+                      const userInput = e.target.adminUser.value.trim();
+                      const passwordInput = e.target.adminPassword.value.trim();
+                      
+                      // 🔑 Validación con las credenciales de tu viejo modal
+                      if (userInput === 'admin' && passwordInput === 'patricio2026') {
                         setIsAdmin(true);
                       } else {
-                        alert('❌ Contraseña incorrecta. Inténtalo de nuevo.');
+                        alert('❌ Usuario o contraseña incorrectos. Inténtalo de nuevo.');
                       }
                     }}
-                    className="bg-stone-950 p-6 border border-stone-800 rounded-xl w-full max-w-sm shadow-2xl space-y-4"
+                    className="bg-stone-950 p-6 border border-stone-800 rounded-xl w-full max-w-sm shadow-2xl space-y-4 text-left"
                   >
-                    <p className="text-sm text-stone-300 font-medium">Ingresa la clave de acceso:</p>
-                    <input 
-                      type="password" 
-                      name="adminPassword"
-                      placeholder="Contraseña del Patricio" 
-                      className="w-full p-2.5 bg-stone-900 border border-stone-800 rounded-lg text-sm text-center text-stone-200 focus:border-amber-500 outline-none font-mono tracking-widest"
-                      required
-                      autoFocus
-                    />
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">
+                        Usuario
+                      </label>
+                      <input 
+                        type="text" 
+                        name="adminUser"
+                        placeholder="Ej. admin" 
+                        className="w-full p-2.5 bg-stone-900 border border-stone-800 rounded-lg text-sm text-stone-200 focus:border-amber-500 outline-none"
+                        required
+                        autoFocus
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">
+                        Contraseña
+                      </label>
+                      <input 
+                        type="password" 
+                        name="adminPassword"
+                        placeholder="••••••••" 
+                        className="w-full p-2.5 bg-stone-900 border border-stone-800 rounded-lg text-sm text-stone-200 focus:border-amber-500 outline-none"
+                        required
+                      />
+                    </div>
+
                     <button 
                       type="submit" 
-                      className="w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold uppercase rounded-lg text-xs tracking-wider transition-colors"
+                      className="w-full py-3 bg-amber-600 hover:bg-amber-500 text-white font-bold uppercase rounded-lg text-xs tracking-wider transition-colors pt-2"
                     >
-                      Ingresar al Sistema
+                      Iniciar Sesión
                     </button>
-                    <p className="text-[10px] text-stone-600 pt-1">Módulo de Seguridad Local – UNAMAD</p>
+                    <p className="text-[10px] text-stone-600 text-center pt-1">Módulo de Seguridad Local – UNAMAD</p>
                   </form>
                 </div>
               )
@@ -115,9 +135,8 @@ export default function App() {
 
         <Footer />
 
-        {/* Modales globales de interacción */}
+        {/* Modales globales */}
         <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-        
         {selectedDish && (
           <DishModal 
             dish={selectedDish} 
