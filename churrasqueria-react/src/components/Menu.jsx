@@ -20,16 +20,15 @@ export default function Menu({ onDishClick }) {
             seleccionados de la región amazónica.
           </p>
         </div>
-
-        {/* Grid de platos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid de platos - Ajustado para ser más compacto en móviles */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {MENU.map(dish => (
             <MenuItem 
-              key={dish.id} 
-              dish={dish}
-              onDishClick={onDishClick} 
+            key={dish.id} 
+            dish={dish}
+            onDishClick={onDishClick} 
             />
-          ))}
+            ))}
         </div>
       </div>
     </section>

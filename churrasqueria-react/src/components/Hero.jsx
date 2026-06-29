@@ -37,11 +37,11 @@ export default function Hero() {
             Reservar Mesa
           </a>
         </div>
-
-        {/* Scroll hint */}
-        <div className="absolute bottom-[-40px] md:bottom-[-60px] left-1/2 transform -translate-x-1/2 animate-bounce text-stone-400 text-sm font-semibold tracking-widest uppercase">
-          <span className="block text-xs text-accent">↓</span> Descubrir
-        </div>
+        {/* Nuevo contenedor para centrar "Descubrir" de forma fluida */}
+        <div className="mt-12 flex flex-col items-center justify-center animate-bounce text-stone-400">
+          <span className="text-xs text-accent mb-1">↓</span>
+          <span className="text-sm font-semibold tracking-widest uppercase">Descubrir</span>
+          </div>
       </div>
     </section>
   )

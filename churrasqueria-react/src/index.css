@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-gray-50 text-gray-900;
+  /* Evita el scroll horizontal en móviles y fija el fondo oscuro general */
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    @apply bg-stone-950 text-stone-100;
   }
   
   h1, h2, h3 {
@@ -13,27 +16,28 @@
 }
 
 @layer components {
+  /* Botones mantenidos del estilo original pero adaptados a colores oscuros */
   .btn-primary {
-    @apply px-6 py-3 bg-primary-700 text-white rounded-lg font-semibold hover:bg-primary-800 transition-colors;
+    @apply px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors;
   }
   
   .btn-secondary {
-    @apply px-6 py-3 border-2 border-primary-700 text-primary-700 rounded-lg font-semibold hover:bg-primary-50 transition-colors;
+    @apply px-6 py-3 border-2 border-stone-700 text-stone-300 rounded-lg font-semibold hover:bg-stone-800 transition-colors;
   }
   
   .divider {
-    @apply w-16 h-1 bg-accent mx-auto my-4;
+    @apply w-16 h-1 bg-amber-500 mx-auto my-4;
   }
   
   .section-label {
-    @apply text-primary-600 font-semibold uppercase tracking-wider text-sm;
+    @apply text-amber-500 font-semibold uppercase tracking-wider text-sm;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl text-center mt-3;
+    @apply text-3xl md:text-4xl text-center mt-3 text-white;
   }
   
   .section-sub {
-    @apply text-gray-600 text-center max-w-2xl mx-auto mt-4;
+    @apply text-stone-400 text-center max-w-2xl mx-auto mt-4;
   }
-}
+};
