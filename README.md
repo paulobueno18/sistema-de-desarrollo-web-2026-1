@@ -1,10 +1,10 @@
-# 🚀 Sistema de Desarrollo Web - Proyecto Final (Churrasquería)
+🚀 Sistema de Desarrollo Web - Proyecto Final (Churrasquería)
 
 Bienvenido al repositorio del proyecto final. En este espacio se ha desarrollado el sistema web para la **Churrasquería**, aplicando los conocimientos adquiridos a lo largo del ciclo académico.
 
 ---
 
-## 📌 Nota para la Calificación (Migración a React)
+## 📌 Realizamos la migracion del proyecto a React (Migración a React)
 
 Estimado docente, para una mejor revisión de la entrega, se deja constancia de que **el proyecto ha sido migrado exitosamente a React**. Ambas versiones del trabajo se encuentran disponibles y organizadas dentro de este repositorio:
 
@@ -29,6 +29,3 @@ Asegúrese de estar visualizando la rama **`master`** en GitHub para acceder a l
 *   **JavaScript (ES6+)** (Interactividad)
 *   **React** (Biblioteca principal para la interfaz de usuario)
 *   **Git & GitHub** (Control de versiones)
-
----
-_Estudiante: Paulo Bueno_
