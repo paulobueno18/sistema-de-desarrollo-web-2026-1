@@ -4,7 +4,7 @@ Bienvenido al repositorio del proyecto final. En este espacio se ha desarrollado
 
 ---
 
-## 📌 Nota para la Calificación (Migración a React)
+## 📌 Realizamos la migracion del proyecto a React (Migración a React)
 
 Estimado docente, para una mejor revisión de la entrega, se deja constancia de que **el proyecto ha sido migrado exitosamente a React**. Ambas versiones del trabajo se encuentran disponibles y organizadas dentro de este repositorio:
 
