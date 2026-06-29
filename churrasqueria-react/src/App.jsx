@@ -10,6 +10,9 @@ import CartModal from './components/CartModal'
 import DishModal from './components/DishModal'
 import AdminPanel from './components/AdminPanel'
 
+// 1. Importación del menú estático inicial
+import { MENU } from './data/menu' 
+
 export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isDishOpen, setIsDishOpen] = useState(false)
@@ -17,6 +20,40 @@ export default function App() {
   
   // Estado para controlar si el administrador ha iniciado sesión
   const [isAdmin, setIsAdmin] = useState(false)
+
+  // 2. 💾 Inicialización inteligente del Estado usando LocalStorage
+  const [platos, setPlatos] = useState(() => {
+    const platosGuardados = localStorage.getItem('menu_churrasqueria');
+    // Si ya existen datos en el navegador, los usa; si no, carga el menú original
+    return platosGuardados ? JSON.parse(platosGuardados) : MENU;
+  });
+
+  // 3. ➕ Función del CRUD: Agregar un nuevo plato
+  const handleAgregarPlato = (nuevoPlato) => {
+    const platoConId = { ...nuevoPlato, id: Date.now() }; // ID único basado en tiempo
+    const listaActualizada = [...platos, platoConId];
+    
+    setPlatos(listaActualizada);
+    localStorage.setItem('menu_churrasqueria', JSON.stringify(listaActualizada));
+  };
+
+  // 4. 📝 Función del CRUD: Editar un plato existente
+  const handleEditarPlato = (idPlato, platoModificado) => {
+    const listaActualizada = platos.map((p) => 
+      p.id === idPlato ? { ...p, ...platoModificado } : p
+    );
+    
+    setPlatos(listaActualizada);
+    localStorage.setItem('menu_churrasqueria', JSON.stringify(listaActualizada));
+  };
+
+  // 5. ❌ Función del CRUD: Eliminar un plato
+  const handleEliminarPlato = (idPlato) => {
+    const listaActualizada = platos.filter((p) => p.id !== idPlato);
+    
+    setPlatos(listaActualizada);
+    localStorage.setItem('menu_churrasqueria', JSON.stringify(listaActualizada));
+  };
 
   const handleOpenDish = (dish) => {
     setSelectedDish(dish)
@@ -39,7 +76,8 @@ export default function App() {
             <Route path="/" element={
               <>
                 <Hero />
-                <Menu onDishClick={handleOpenDish} />
+                {/* Enviamos los platos dinámicos al Menú */}
+                <Menu platos={platos} onDishClick={handleOpenDish} />
               </>
             } />
 
@@ -52,7 +90,7 @@ export default function App() {
               </div>
             } />
 
-            {/* 🛠️ RUTA 3: Panel de Administración con Login Integrado (Doble Campo) */}
+            {/* 🛠️ RUTA 3: Panel de Administración con Login Integrado */}
             <Route path="/admin" element={
               isAdmin ? (
                 // Vista 1: Si ya inició sesión, ve el panel CRUD de gestión
@@ -65,7 +103,13 @@ export default function App() {
                       🔒 Cerrar Sesión Admin
                     </button>
                   </div>
-                  <AdminPanel />
+                  {/* Pasamos los platos y funciones CRUD al Panel de Administración */}
+                  <AdminPanel 
+                    platos={platos} 
+                    onAgregar={handleAgregarPlato} 
+                    onEditar={handleEditarPlato} 
+                    onEliminar={handleEliminarPlato} 
+                  />
                 </div>
               ) : (
                 // Vista 2: Formulario completo integrado en la pantalla /admin
@@ -83,7 +127,7 @@ export default function App() {
                       const userInput = e.target.adminUser.value.trim();
                       const passwordInput = e.target.adminPassword.value.trim();
                       
-                      // 🔑 Validación con las credenciales de tu viejo modal
+                      // 🔑 Validación con las credenciales locales
                       if (userInput === 'admin' && passwordInput === 'patricio2026') {
                         setIsAdmin(true);
                       } else {
