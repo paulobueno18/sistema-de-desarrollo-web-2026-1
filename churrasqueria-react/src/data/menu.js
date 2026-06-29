@@ -6,7 +6,7 @@ export const MENU = [
     detail: 'Picanha seleccionada, sellada al carbón y servida con salsa de chimichurri y papas crocantes.',
     ingredients: 'Picanha, yuca sancochada, ensalada fresca, chimichurri, sal de mar.',
     price: 45.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%238B4513%22 width=%22400%22 height=%22300%22/%3E%3Crect fill=%22%23A0522D%22 width=%22300%22 height=%22250%22 x=%2250%22 y=%2225%22 rx=%2210%22/%3E%3Ccircle fill=%22%23D4AF37%22 cx=%22200%22 cy=%22150%22 r=%2240%22/%3E%3Ctext x=%22200%22 y=%22160%22 font-size=%2224%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22Arial%22%3EPicanha%3C/text%3E%3C/svg%3E'
+    img: 'https://img.freepik.com/fotos-premium/picanha-asada-barbacoa-carbon_538646-13367.jpg'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const MENU = [
     detail: 'Corte especial curado con hierbas, acompañado de papas rústicas y chimichurri casero.',
     ingredients: 'Corte churrasco, papas rústicas, salsa chimichurri, ensalada de hojas.',
     price: 38.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23A0522D%22 width=%22400%22 height=%22300%22/%3E%3Crect fill=%22%238B4513%22 width=%22300%22 height=%22250%22 x=%2250%22 y=%2225%22 rx=%2210%22/%3E%3Ccircle fill=%22%23D4AF37%22 cx=%22200%22 cy=%22150%22 r=%2240%22/%3E%3Ctext x=%22200%22 y=%22160%22 font-size=%2224%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22Arial%22%3EChurrasco%3C/text%3E%3C/svg%3E'
+    img: 'https://okdiario.com/img/2025/09/03/churrasco-de-cerdo-de-arguinano-635x358.jpg'
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const MENU = [
     detail: 'Lomo fino marinado, a la brasa con especias amazónicas y guarnición de yuca dorada.',
     ingredients: 'Lomo fino, especias amazónicas, yuca dorada, vegetales salteados.',
     price: 42.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%238B6F47%22 width=%22400%22 height=%22300%22/%3E%3Crect fill=%22%23704214%22 width=%22300%22 height=%22250%22 x=%2250%22 y=%2225%22 rx=%2210%22/%3E%3Ccircle fill=%22%23D4AF37%22 cx=%22200%22 cy=%22150%22 r=%2240%22/%3E%3Ctext x=%22200%22 y=%22160%22 font-size=%2220%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22Arial%22%3ELomo Fino%3C/text%3E%3C/svg%3E'
+    img: 'https://www.clarin.com/img/2022/03/07/DypdvdWwd_1200x630__1.jpg'
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const MENU = [
     detail: 'Costillas tiernas glaseadas al carbón en una salsa de la casa, con papas y ensalada criolla.',
     ingredients: 'Costillas, salsa BBQ artesanal, papas, ensalada criolla, limón.',
     price: 40.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23654321%22 width=%22400%22 height=%22300%22/%3E%3Crect fill=%22%23463C20%22 width=%22300%22 height=%22250%22 x=%2250%22 y=%2225%22 rx=%2210%22/%3E%3Ccircle fill=%22%23D4AF37%22 cx=%22200%22 cy=%22150%22 r=%2240%22/%3E%3Ctext x=%22200%22 y=%22160%22 font-size=%2220%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22Arial%22%3ECostillas%3C/text%3E%3C/svg%3E'
+    img: 'https://diy-ideas.oss-accelerate.aliyuncs.com/wp-content/uploads/2024/08/grilled-ribs.png'
   },
   {
     id: 5,
@@ -42,6 +42,6 @@ export const MENU = [
     detail: 'Una parrillada completa con cortes mixtos, chorizos artesanales, yuca y ensaladas para dos o más personas.',
     ingredients: 'Chorizo artesanal, costillas, picanha, ensalada, yuca, salsas.',
     price: 75.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23704214%22 width=%22400%22 height=%22300%22/%3E%3Crect fill=%22%238B6F47%22 width=%22300%22 height=%22250%22 x=%2250%22 y=%2225%22 rx=%2210%22/%3E%3Ccircle fill=%22%23D4AF37%22 cx=%22200%22 cy=%22150%22 r=%2240%22/%3E%3Ctext x=%22200%22 y=%22160%22 font-size=%2224%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22Arial%22%3EGran Mix%3C/text%3E%3C/svg%3E'
+    img: 'https://gscooking.com.br/public/uploads/2021/files/1609707950-mix_de_churrasco.2021.png'
   }
 ]
