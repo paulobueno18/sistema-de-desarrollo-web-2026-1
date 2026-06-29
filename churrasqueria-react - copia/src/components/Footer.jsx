@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom' // 👈 No olvides importarlo
-
 export default function Footer() {
   return (
     <footer className="bg-primary-800 text-white py-12">
@@ -15,20 +13,26 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Enlaces</h4>
             <ul className="space-y-2 text-primary-200">
-              <li><Link to="/" className="hover:text-accent transition">Inicio / Menú</Link></li>
-              <li><Link to="/reservar"  className="hover:text-accent transition">📅 Reservar Mesa</Link></li>
-              {/* 🛠️ Abre el Administrador aislado en otra PESTAÑA NUEVA de tu localhost */}
-              <li><Link to="/admin"  className="text-stone-400 hover:text-stone-300 text-xs transition">🛠️ Acceso Admin</Link></li>
+              <li><a href="#inicio" className="hover:text-accent transition">Inicio</a></li>
+              <li><a href="#menu" className="hover:text-accent transition">Menú</a></li>
+              <li><a href="#contacto" className="hover:text-accent transition">Contacto</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Información</h4>
             <p className="text-primary-200 text-sm">
-              © 2026 El Rinconcito del Patricio<br />
+              © 2026 El Rinconcito del Patricio
+              <br />
               UNAMAD – Ingeniería de Sistemas
+              <br />
+              Bueno Quiñones Paulo Cesar & Hurtado Quispe Mark Leonel
             </p>
           </div>
+        </div>
+
+        <div className="border-t border-primary-700 mt-8 pt-8 text-center text-primary-200">
+          <p>&copy; 2026 El Rinconcito del Patricio. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Evita el scroll horizontal en móviles y fija el fondo oscuro general */
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    @apply bg-stone-950 text-stone-100;
+  }
+  
+  h1, h2, h3 {
+    @apply font-serif font-bold;
+  }
+}
+
+@layer components {
+  /* Botones mantenidos del estilo original pero adaptados a colores oscuros */
+  .btn-primary {
+    @apply px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 border-2 border-stone-700 text-stone-300 rounded-lg font-semibold hover:bg-stone-800 transition-colors;
+  }
+  
+  .divider {
+    @apply w-16 h-1 bg-amber-500 mx-auto my-4;
+  }
+  
+  .section-label {
+    @apply text-amber-500 font-semibold uppercase tracking-wider text-sm;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl text-center mt-3 text-white;
+  }
+  
+  .section-sub {
+    @apply text-stone-400 text-center max-w-2xl mx-auto mt-4;
+  }
+};

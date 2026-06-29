@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom' // 👈 1. Importamos la herramienta de React Router
-
 export default function Hero() {
   return (
     <section 
@@ -32,26 +30,19 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          {/* Este se mantiene como <a> porque hace un scroll interno al #menu en la misma página */}
           <a href="#menu" className="btn-primary min-w-[180px] text-center">
             Ver Especialidades
           </a>
-          
-          {/* 👈 2. Cambiamos el <a> por <Link> apuntando a tu nueva ruta aislada */}
-          <Link 
-            to="/reservar"
-            className="btn-secondary min-w-[180px] text-center bg-transparent border-white text-white hover:bg-white hover:text-black transition-all"
-          >
+          <a href="#contacto" className="btn-secondary min-w-[180px] text-center bg-transparent border-white text-white hover:bg-white hover:text-black transition-all">
             Reservar Mesa
-          </Link>
+          </a>
         </div>
-        
         {/* Nuevo contenedor para centrar "Descubrir" de forma fluida */}
         <div className="mt-12 flex flex-col items-center justify-center animate-bounce text-stone-400">
           <span className="text-xs text-accent mb-1">↓</span>
           <span className="text-sm font-semibold tracking-widest uppercase">Descubrir</span>
-        </div>
+          </div>
       </div>
     </section>
   )
-}
+};

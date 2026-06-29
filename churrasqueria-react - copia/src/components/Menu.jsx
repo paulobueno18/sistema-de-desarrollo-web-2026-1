@@ -1,10 +1,9 @@
 import MenuItem from './MenuItem'
-import { useCart } from '../context/CartContext'
+import { MENU } from '../data/menu'
 
 export default function Menu({ onDishClick }) {
-  const { products } = useCart()
-
   return (
+    // Cambiado bg-white por bg-stone-900 y texto a blanco
     <section id="menu" className="py-20 bg-stone-900 border-t border-stone-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -17,17 +16,21 @@ export default function Menu({ onDishClick }) {
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto mt-4 mb-4"></div>
           <p className="text-stone-400 max-w-xl mx-auto text-sm md:text-base">
-            Platos preparados a las brasas con ingredientes seleccionados de la región amazónica.
+            Cinco platos únicos preparados a las brasas con ingredientes 
+            seleccionados de la región amazónica.
           </p>
         </div>
-
-        {/* Grid de platos dinámicos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
-          {products.map((dish) => (
-            <MenuItem key={dish.id} dish={dish} onDishClick={onDishClick} />
-          ))}
+        {/* Grid de platos - Ajustado para ser más compacto en móviles */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+          {MENU.map(dish => (
+            <MenuItem 
+            key={dish.id} 
+            dish={dish}
+            onDishClick={onDishClick} 
+            />
+            ))}
         </div>
       </div>
     </section>
   )
-}
+};
