@@ -1,3 +1,4 @@
+@import "tailwindcss";
 /* Variables de tema para Churrasquería */
 :root {
   --color-primary: #78350f;      /* Ámbar oscuro / Tono madera */
